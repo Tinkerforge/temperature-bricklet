@@ -24,7 +24,7 @@ Module ExampleThreshold
         t.SetDebouncePeriod(10000)
 
         ' Register temperature reached callback to subroutine TemperatureReachedCB
-        AddHandler t.TemperatureReached, AddressOf TemperatureReachedCB
+        AddHandler t.TemperatureReachedCallback, AddressOf TemperatureReachedCB
 
         ' Configure threshold for temperature "greater than 30 °C" (unit is °C/100)
         t.SetTemperatureCallbackThreshold(">"C, 30*100, 0)

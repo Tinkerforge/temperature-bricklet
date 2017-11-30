@@ -20,7 +20,7 @@ TemperatureReachedCB[sender_,temperature_]:=
   Print["It is too hot, we need air conditioning!"]
  ]
 
-AddEventHandler[t@TemperatureReached,TemperatureReachedCB]
+AddEventHandler[t@TemperatureReachedCallback,TemperatureReachedCB]
 
 (*Configure threshold for temperature "greater than 30 °C" (unit is °C/100)*)
 option=Tinkerforge`BrickletTemperature`THRESHOLDUOPTIONUGREATER
