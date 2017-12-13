@@ -128,10 +128,9 @@ int16_t two_complement_12_to_16(const int16_t value) {
 int16_t temperature_read(void) {
 	const uint8_t port = BS->port - 'a';
 
-	uint16_t value;
+	uint8_t value[2];
 
     uint32_t timeout;
-	
 
 	if(BC->i2c_mode == I2C_MODE_SLOW) {
 		// Switch to 100khz
@@ -141,40 +140,11 @@ int16_t temperature_read(void) {
 
 	BA->bricklet_select(port);
 
-	Twi* twi = BA->twid->pTwi;
-
-	// Start read at I2C_ADDRESS
-	twi->TWI_MMR = 0;
-	if(BS->address == I2C_EEPROM_ADDRESS_HIGH) {
-		twi->TWI_MMR = TWI_MMR_MREAD | (I2C_ADDRESS_HIGH << 16);
-	} else {
-		twi->TWI_MMR = TWI_MMR_MREAD | (I2C_ADDRESS_LOW << 16);
-	}
-	twi->TWI_IADR = 0;
-	twi->TWI_CR = TWI_CR_START;
-
-	// Read first byte
-    timeout = 0;
-	while(!((twi->TWI_SR & TWI_SR_RXRDY) == TWI_SR_RXRDY) && (++timeout<TWITIMEOUTMAX) );
-	if (timeout == TWITIMEOUTMAX) {
-		return -9999;
-    } 
-	value = twi->TWI_RHR;
-
-	// Read second byte
-    twi->TWI_CR = TWI_CR_STOP;
-    timeout = 0;
-	while(!((twi->TWI_SR & TWI_SR_RXRDY) == TWI_SR_RXRDY) && (++timeout<TWITIMEOUTMAX));
-	if (timeout == TWITIMEOUTMAX) {
-		return -9999;
-    } 
-	value = (twi->TWI_RHR | (value << 8));
-
-    timeout = 0;
-	while(!((twi->TWI_SR & TWI_SR_TXCOMP) == TWI_SR_TXCOMP) && (++timeout<TWITIMEOUTMAX));
-	if (timeout == TWITIMEOUTMAX) {
-		return -9999;
-    } 
+	BA->TWID_Read(BA->twid,
+	              BS->address == I2C_EEPROM_ADDRESS_HIGH ? I2C_ADDRESS_HIGH : I2C_ADDRESS_LOW,
+	              0, 0,
+				  value, 2,
+				  NULL);
 
 	BA->bricklet_deselect(port);
 
@@ -182,7 +152,7 @@ int16_t temperature_read(void) {
 	BA->twid->pTwi->TWI_CWGR = 0;
 	BA->twid->pTwi->TWI_CWGR = (76 << 8) | 76;
 
-	return two_complement_12_to_16(value >> 4)*TEMP_SCALE_MUL/TEMP_SCALE_DIV;
+	return two_complement_12_to_16((value[1] | (value[0] << 8)) >> 4)*TEMP_SCALE_MUL/TEMP_SCALE_DIV;
 }
 
 void get_i2c_mode(const ComType com, const GetI2CMode *data) {
