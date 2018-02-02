@@ -13,7 +13,7 @@ ipcon@Connect[host,port]
 (*Get threshold callbacks with a debounce time of 10 seconds (10000ms)*)
 t@SetDebouncePeriod[10000]
 
-(*Callback function for temperature reached callback (parameter has unit °C/100)*)
+(*Callback function for temperature reached callback*)
 TemperatureReachedCB[sender_,temperature_]:=
  Module[{},
   Print["Temperature: "<>ToString[N[Quantity[temperature,"°C/100"]]]];
@@ -22,7 +22,7 @@ TemperatureReachedCB[sender_,temperature_]:=
 
 AddEventHandler[t@TemperatureReachedCallback,TemperatureReachedCB]
 
-(*Configure threshold for temperature "greater than 30 °C" (unit is °C/100)*)
+(*Configure threshold for temperature "greater than 30 °C"*)
 option=Tinkerforge`BrickletTemperature`THRESHOLDUOPTIONUGREATER
 t@SetTemperatureCallbackThreshold[option,30*100,0]
 

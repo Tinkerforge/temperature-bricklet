@@ -8,7 +8,7 @@ UID = "XYZ" # Change XYZ to the UID of your Temperature Bricklet
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_temperature import BrickletTemperature
 
-# Callback function for temperature reached callback (parameter has unit °C/100)
+# Callback function for temperature reached callback
 def cb_temperature_reached(temperature):
     print("Temperature: " + str(temperature/100.0) + " °C")
     print("It is too hot, we need air conditioning!")
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     # Register temperature reached callback to function cb_temperature_reached
     t.register_callback(t.CALLBACK_TEMPERATURE_REACHED, cb_temperature_reached)
 
-    # Configure threshold for temperature "greater than 30 °C" (unit is °C/100)
+    # Configure threshold for temperature "greater than 30 °C"
     t.set_temperature_callback_threshold(">", 30*100, 0)
 
     raw_input("Press key to exit\n") # Use input() in Python 3

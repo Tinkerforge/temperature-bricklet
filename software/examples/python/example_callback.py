@@ -8,7 +8,7 @@ UID = "XYZ" # Change XYZ to the UID of your Temperature Bricklet
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_temperature import BrickletTemperature
 
-# Callback function for temperature callback (parameter has unit °C/100)
+# Callback function for temperature callback
 def cb_temperature(temperature):
     print("Temperature: " + str(temperature/100.0) + " °C")
 

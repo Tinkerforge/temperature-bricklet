@@ -3,5 +3,5 @@
 
 uid=XYZ # Change XYZ to the UID of your Temperature Bricklet
 
-# Get current temperature (unit is °C/100)
+# Get current temperature
 tinkerforge call temperature-bricklet $uid get-temperature

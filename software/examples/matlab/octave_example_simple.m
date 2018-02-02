@@ -11,7 +11,7 @@ function octave_example_simple()
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Get current temperature (unit is °C/100)
+    % Get current temperature
     temperature = t.getTemperature();
     fprintf("Temperature: %g °C\n", java2int(temperature)/100.0);
 

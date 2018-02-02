@@ -17,7 +17,7 @@ public class ExampleSimple {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get current temperature (unit is °C/100)
+		// Get current temperature
 		short temperature = t.getTemperature(); // Can throw com.tinkerforge.TimeoutException
 		System.out.println("Temperature: " + temperature/100.0 + " °C");
 

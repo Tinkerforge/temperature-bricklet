@@ -17,14 +17,14 @@ function octave_example_threshold()
     % Register temperature reached callback to function cb_temperature_reached
     t.addTemperatureReachedCallback(@cb_temperature_reached);
 
-    % Configure threshold for temperature "greater than 30 °C" (unit is °C/100)
+    % Configure threshold for temperature "greater than 30 °C"
     t.setTemperatureCallbackThreshold(">", 30*100, 0);
 
     input("Press key to exit\n", "s");
     ipcon.disconnect();
 end
 
-% Callback function for temperature reached callback (parameter has unit °C/100)
+% Callback function for temperature reached callback
 function cb_temperature_reached(e)
     fprintf("Temperature: %g °C\n", java2int(e.temperature)/100.0);
     fprintf("It is too hot, we need air conditioning!\n");

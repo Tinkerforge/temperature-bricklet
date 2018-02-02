@@ -19,14 +19,14 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         t.setDebouncePeriod(10000);
 
-        // Configure threshold for temperature "greater than 30 °C" (unit is °C/100)
+        // Configure threshold for temperature "greater than 30 °C"
         t.setTemperatureCallbackThreshold('>', 30*100, 0);
     }
 );
 
 // Register temperature reached callback
 t.on(Tinkerforge.BrickletTemperature.CALLBACK_TEMPERATURE_REACHED,
-    // Callback function for temperature reached callback (parameter has unit °C/100)
+    // Callback function for temperature reached callback
     function (temperature) {
         console.log('Temperature: ' + temperature/100.0 + ' °C');
         console.log('It is too hot, we need air conditioning!');
