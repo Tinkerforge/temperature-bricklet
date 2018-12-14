@@ -22,7 +22,7 @@ func main() {
 	t.SetDebouncePeriod(10000)
 
 	t.RegisterTemperatureReachedCallback(func(temperature int16) {
-		fmt.Printf("Temperature: %d °C\n", float64(temperature)/100.0)
+		fmt.Printf("Temperature: %f °C\n", float64(temperature)/100.0)
 		fmt.Println("It is too hot, we need air conditioning!")
 	})
 
