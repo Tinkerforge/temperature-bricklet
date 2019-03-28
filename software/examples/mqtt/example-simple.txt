@@ -3,4 +3,4 @@
 setup:
 	# Get current temperature
 	subscribe to tinkerforge/response/temperature_bricklet/XYZ/get_temperature
-	publish '' to tinkerforge/request/temperature_bricklet/XYZ/get_temperature 
+	publish '' to tinkerforge/request/temperature_bricklet/XYZ/get_temperature
