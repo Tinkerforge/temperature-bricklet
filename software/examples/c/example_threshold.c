@@ -37,7 +37,7 @@ int main(void) {
 	// Register temperature reached callback to function cb_temperature_reached
 	temperature_register_callback(&t,
 	                              TEMPERATURE_CALLBACK_TEMPERATURE_REACHED,
-	                              (void *)cb_temperature_reached,
+	                              (void (*)(void))cb_temperature_reached,
 	                              NULL);
 
 	// Configure threshold for temperature "greater than 30 °C"
