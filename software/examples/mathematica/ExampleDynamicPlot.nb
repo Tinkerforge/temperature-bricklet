@@ -31,8 +31,8 @@ Cell[BoxData[{
  RowBox[{"port", "=", "4223"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"uid", "=", "\"\<XYZ\>\""}], 
-  RowBox[{"(*", " ", 
-   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], " ", "*)"}], 
+  RowBox[{"(*",
+   RowBox[{"Change XYZ to the UID of your Temperature Bricklet", "*)"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
